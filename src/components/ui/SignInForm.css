@@ -1,0 +1,9 @@
+.form-item-custom label {
+    width: 100px; /* Adjust this width based on your layout needs */
+    text-align: left; /* Ensures label text alignment */
+  }
+  
+  .remember-me {
+    margin-bottom: 0; /* Adjust spacing as needed */
+  }
+  
