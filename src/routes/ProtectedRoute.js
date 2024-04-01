@@ -1,29 +1,34 @@
 // src/routes/ProtectedRoute.js
 
-import React, { useEffect,useLayoutEffect,useState } from 'react';
+import React, {useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { selectIsAuthenticated, checkAuthentication } from '../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
 import Navbar from '../components/ui/Navbar/Navbar';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ component: Component }) => {
     const isAuthenticated = useSelector(selectIsAuthenticated);
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
-      dispatch(checkAuthentication());
+        dispatch(checkAuthentication());
     }
     , [dispatch]);
+
+    console.log(isAuthenticated);
     
-  return isAuthenticated ? 
-  <>
-    <Navbar >
-        {children}
-    </Navbar>
-  </>
-    :
-    <Navigate to="/login" />;
-};
+  if (isAuthenticated) {
+    return (
+        <>
+            <Navbar >
+              <Component />
+            </Navbar>
+        </>
+    );
+  } else {
+    return <Navigate to="/login" />;
+  }
+}
 
 export default ProtectedRoute;

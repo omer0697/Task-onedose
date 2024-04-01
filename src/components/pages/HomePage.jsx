@@ -1,6 +1,4 @@
 import React , {useEffect, useState} from 'react'
-import Navbar from '../ui/Navbar/Navbar'
-import { jwtDecode } from 'jwt-decode';
 import CustomTable from '../ui/Table/Table';
 import axios from 'axios';
 import { Input } from 'antd';
